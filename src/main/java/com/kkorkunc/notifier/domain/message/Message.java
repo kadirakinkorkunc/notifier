@@ -3,15 +3,13 @@ package com.kkorkunc.notifier.domain.message;
 import com.kkorkunc.notifier.domain.message.exception.ContentLengthExceededException;
 import com.kkorkunc.notifier.domain.message.sender.Sender;
 import com.kkorkunc.notifier.domain.message.exception.MessageAlreadySentException;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Getter
 public class Message {
     private static final int MAX_CONTENT_LENGTH = 500;
 
