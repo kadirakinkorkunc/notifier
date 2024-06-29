@@ -21,7 +21,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public List<Message> getReadyToSendMessages(int count) {
-        return messageJpaRepository.getXMessageWithStatus(MessageEntity.Status.READY_TO_SENT, count)
+        return messageJpaRepository.getXMessageWithStatus(MessageEntity.Status.READY_TO_SEND, count)
                 .stream()
                 .map(MessageEntity::to)
                 .collect(Collectors.toList());

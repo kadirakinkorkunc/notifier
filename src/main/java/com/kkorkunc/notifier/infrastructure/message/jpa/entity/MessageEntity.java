@@ -6,12 +6,14 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Entity(name = "message")
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
+@NoArgsConstructor
 public class MessageEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,19 +30,19 @@ public class MessageEntity {
     String content;
 
     public enum Status {
-        READY_TO_SENT,
+        READY_TO_SEND,
         SENT;
 
         public MessageStatus to() {
             return switch (this) {
-                case READY_TO_SENT -> MessageStatus.READY_TO_SEND;
+                case READY_TO_SEND -> MessageStatus.READY_TO_SEND;
                 case SENT -> MessageStatus.SENT;
             };
         }
 
         public static Status from(MessageStatus status) {
             return switch (status) {
-                case MessageStatus.READY_TO_SEND -> READY_TO_SENT;
+                case MessageStatus.READY_TO_SEND -> READY_TO_SEND;
                 case MessageStatus.SENT -> SENT;
             };
         }
