@@ -1,5 +1,9 @@
 package com.kkorkunc.notifier.infrastructure.message.config;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -21,4 +25,21 @@ public class Configuration {
         template.setHashValueSerializer(stringSerializer);
         return template;
     }
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("Message API")
+                        .version("1.0")
+                        .license(new License()
+                                .name("Apache 2.0")
+                        )
+                        .contact(new Contact()
+                                .email("kadirakinkorkunc@gmail.com")
+                                .name("Developer")
+                        )
+                );
+    }
+
 }

@@ -16,3 +16,5 @@ spring.data.redis.timeout=60000
 message.count-to-process-at-once = 2
 message.scheduler-fixed-rate-in-ms = 120000
 message.sender.webhook-client = https://xyzt
+
+springdoc.swagger-ui.path=/swagger-ui.html
