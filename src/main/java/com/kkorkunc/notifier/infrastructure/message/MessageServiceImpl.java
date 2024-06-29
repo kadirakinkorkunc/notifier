@@ -2,6 +2,7 @@ package com.kkorkunc.notifier.infrastructure.message;
 
 import com.kkorkunc.notifier.domain.message.Message;
 import com.kkorkunc.notifier.domain.message.MessageService;
+import com.kkorkunc.notifier.domain.message.MessageStatus;
 import com.kkorkunc.notifier.infrastructure.message.jpa.entity.MessageEntity;
 import com.kkorkunc.notifier.infrastructure.message.jpa.repository.MessageJpaRepository;
 import lombok.AccessLevel;
@@ -28,8 +29,8 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<Message> getAll() {
-        return messageJpaRepository.findAll().stream()
+    public List<Message> getAllByStatus(MessageStatus status) {
+        return messageJpaRepository.findAllByStatus(MessageEntity.Status.from(status)).stream()
                 .map(MessageEntity::to)
                 .collect(Collectors.toList());
     }
