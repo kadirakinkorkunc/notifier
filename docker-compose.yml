@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: 'outsider'
+      MYSQL_USER: 'outsideruser'
+      MYSQL_PASSWORD: 'outsiderpassword'
+      MYSQL_ROOT_PASSWORD: '12345678'
+    healthcheck:
+      test: "/usr/bin/mysql --user=outsideruser --password=outsiderpassword --execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10
+
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/conf.d:/etc/mysql/conf.d
+      - ./data/logs:/logs
+      - /usr/local/var/mysql:/var/lib/mysql
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis:/root/redis
+      - ./data/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_PASSWORD=outsiderpassword
+      - REDIS_PORT=6379
+      - REDIS_DATABASES=1
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "outsiderpassword", "--raw", "ping"]
+      interval: 2s
+      timeout: 20s
+      retries: 10
+  messaging-api:
+    ports:
+      - "8080:8080"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
