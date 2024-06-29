@@ -7,6 +7,12 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.jpa.database=mysql
 #spring.jpa.show-sql=true
 
+spring.data.redis.database=0
+spring.data.redis.host=localhost
+spring.data.redis.port=6379
+spring.data.redis.password=outsiderpassword
+spring.data.redis.timeout=60000
+
 message.count-to-process-at-once = 2
-message.scheduler-fixed-rate-in-ms = 5000
-message.sender.webhook-client = https://webhook.site/46fb6e8c-bab9-427d-beb5-9a63d60be6dd/
+message.scheduler-fixed-rate-in-ms = 120000
+message.sender.webhook-client = https://xyzt

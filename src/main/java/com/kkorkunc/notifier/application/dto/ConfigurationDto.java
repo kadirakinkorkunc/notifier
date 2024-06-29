@@ -11,5 +11,5 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ConfigurationDto {
-    boolean messageSendJobWorking;
+    boolean messageSendJobWorking = true;
 }
