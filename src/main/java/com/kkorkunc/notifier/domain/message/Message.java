@@ -18,6 +18,7 @@ public class Message {
     @NonNull String content;
     @NonNull MessageStatus status;
 
+    //todo: if conditions go bigger then extract the validations with decorator design pattern
     public void send(Sender sender) {
         if (MessageStatus.SENT.equals(status)) {
             throw new MessageAlreadySentException("Message already sent!");

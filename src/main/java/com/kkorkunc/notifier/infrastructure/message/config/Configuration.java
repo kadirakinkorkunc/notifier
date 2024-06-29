@@ -12,6 +12,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @org.springframework.context.annotation.Configuration
 @EnableScheduling
+//todo: centralize the configurations
 public class Configuration {
 
     @Bean

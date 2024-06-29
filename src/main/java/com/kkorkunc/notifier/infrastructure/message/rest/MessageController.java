@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/v1")
+//todo: add detailed swagger descriptions
+//todo: erroradvice for business errors
 public class MessageController {
 
     @Autowired
